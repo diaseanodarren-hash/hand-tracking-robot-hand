@@ -20,8 +20,17 @@ The robotic hand can perform finger flexion and extension with 1 degree of freed
 - Hardware: STM32 Nucelo Board, 5 servo motors, Jumper Wires, Breadboard, wooden sticks (Robotic Hand Sekelton)
 - Software/libraries: Hand tracking module, STM32 CUBE IDE, VS Code
 
-### Challenges & what I learned
+## Challenges & what I learned
 -[challenges here]
 
-### What I'd improve
+## What I'd improve
 -[improvements here]
+
+## Acknowledgements
+- [OpenCV](https://opencv.org/) — used for video capture and image processing
+- [MediaPipe Hands](https://github.com/google-ai-edge/mediapipe) by Google — hand landmark detection
+- Hand detection/tracking module structure adapted from the classic 
+  MediaPipe + OpenCV `handDetector` tutorial pattern popularized by 
+  Murtaza's Workshop ("30 Days of Computer Vision") and widely 
+  reproduced in tutorials such as:
+  (https://www.analyticsvidhya.com/blog/2021/07/building-a-hand-tracking-system-using-opencv/)
