@@ -1,10 +1,10 @@
-# hand-tracking-robot-hand
+## Hand-Tracking-Robot-Hand
 A robotic hand controled via mediapipe's hand landmark tracking module
 
 # Demo
 [most recent photo here]
 
-## What it does
+# What it does
 The robotic hand can perform finger flexion and extension with 1 degree of freedom for each finger. It is controlled from a hand landmark tracking video module on a desktop.
 
 # How it works
