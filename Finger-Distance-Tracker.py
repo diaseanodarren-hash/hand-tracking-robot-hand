@@ -5,12 +5,13 @@ import map_function as mf
 import serial
 maping = mf.init.map_range
 tracker=hm.handDetector()
-cap=cv2.VideoCapture(0)
+#Adjust according to your video source ('0' means main webcam)
+cap=cv2.VideoCapture(0) 
 
-
-while True:
 
 #==== Camera & Hand Tracking Module Setup ====
+while True:
+
     success, img = cap.read()
     img = tracker.findHands(img=img)
     lmlist=tracker.findPosition(img, draw=False)
@@ -27,11 +28,11 @@ while True:
 
 #====== Finger Leght Calculation =====
         fingers = [0, 0, 0, 0, 0]
-        i=1
+        lmindex=1
         fingers_index=0
-        while i<=17:
+        while lmindex<=17:
             #=== Calculate Thumb Leght ===
-            if i == 1:
+            if lmindex == 1:
                 tip_x = lmlist[4][1]
                 tip_y = lmlist[4][2]
                 base_x = lmlist[9][1]
@@ -41,26 +42,26 @@ while True:
 
             else:
             #=== Calculate Index, Middle, Ring, Pinky leght from base to tip ===
-                tip_x = lmlist[i+3][1]
-                tip_y =lmlist[i+3][2]
-                base_x= lmlist[i][1]
-                base_y=lmlist[i][2]
+                tip_x = lmlist[lmindex+3][1]
+                tip_y =lmlist[lmindex+3][2]
+                base_x= lmlist[lmindex][1]
+                base_y=lmlist[lmindex][2]
                 finger_leght = math.hypot(tip_x-base_x,tip_y-base_y)/base
                 finger_leght=maping(finger_leght, 0.2, 0.7, 0, 255)
-            i+=4
+            lmindex+=4
 
-    #==== Updates fingers list to current finger leght ====
+    #==== Updates fingers List to Current Finger Leght ====
             fingers[fingers_index] = finger_leght
             fingers_index+=1
     
-    #==== Send Finger Leghts to Microcontroller via Serial Communication =====
-      # Make sure to adjust usb port ('/dev/ttyACM0') according to where your microcontroller is connected to
+    #==== Send Finger Leghts to Microcontroller =====
+    # Make sure to adjust usb port ('/dev/ttyACM0') according to where your microcontroller is connected to
         with serial.Serial(port='/dev/ttyACM0', baudrate=9600, timeout=1) as ser:
-            message = f"{fingers[0]}, {fingers[1]}, {fingers[2]}, {fingers[3]}, {fingers[4]}\n"
+            message = f"{fingers[0]},{fingers[1]},{fingers[2]},{fingers[3]},{fingers[4]}\n"
             print(message)
             ser.write(message.encode('utf-8'))
 
-# == Display Camera ==
+# ===== Display Webcam (press 'q' to exit)======
     cv2.imshow('image', img)
     if cv2.waitKey(1) == ord('q'):
         break
