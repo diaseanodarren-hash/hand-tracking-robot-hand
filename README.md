@@ -2,7 +2,10 @@
 A robotic arm controled via mediapipe's hand landmark tracking module inspired by fictional superhero tony starks dum-e robot arm
 
 ### Demo
-[most recent photo here]
+<img width="184" height="249" alt="image" src="https://github.com/user-attachments/assets/29444ba8-8b45-46ea-8afd-629051af7d00" />
+
+<img width="1296" height="849" alt="image" src="https://github.com/user-attachments/assets/b506818c-c6f9-4ed3-a321-a6b7f5ecefd0" />
+
 
 ## What it does
 The robotic arm can perform flexion and extension with 1 degree of freedom. It is controlled from a hand landmark tracking video module on a desktop.
