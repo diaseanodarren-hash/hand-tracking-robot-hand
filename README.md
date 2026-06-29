@@ -1,24 +1,24 @@
-# Hand-Tracking-Robot-Hand
-A robotic hand controled via mediapipe's hand landmark tracking module
+# Hand-Tracking-Robot-Arm
+A robotic arm controled via mediapipe's hand landmark tracking module inspired by fictional superhero tony starks dum-e robot arm
 
 ### Demo
 [most recent photo here]
 
 ## What it does
-The robotic hand can perform finger flexion and extension with 1 degree of freedom for each finger. It is controlled from a hand landmark tracking video module on a desktop.
+The robotic arm can perform flexion and extension with 1 degree of freedom. It is controlled from a hand landmark tracking video module on a desktop.
 
 ## How it works
 - Capture -- OpenCV gets frame from the webcam
-- Landmark Detection -- Hand tracking module returns 21 xy coordinate pairs of hand-finger joints
-- Scaling -- Distance between tip and base of fingers are scaled to a fixed distance in the hand (wrist to base of middle finger)
+- Landmark Detection -- Hand tracking module returns 13 xy coordinate pairs of hand-finger joints (wrist, thumb, index, middle)
+- Scaling -- Distance between index finger tip and middle finger tip to thumb tip are scaled to a fixed distance in the hand (wrist to base of middle finger)
 - Mapping -- Distance are mapped/clamped between the integers 0-255
 - Communication -- The integers are sent to the microcontroller in the form of strings over serial (USB) at a fixed baudrate of 9600
-- Decoding -- Microcontroller decodes the string into 5 integer values corresponding to each finger distance
-- Actuation -- The 5 integer values are then used to drive servo motors so that it matches the position
+- Decoding -- Microcontroller decodes the string into 2 integer values corresponding to index-thumb and middle-thumb distance
+- Actuation -- The 2 integer values are then used to drive a stepper and servo motor
 
 ## What I used
-- Hardware: STM32 Nucelo Board, 5 servo motors, Jumper Wires, Breadboard, wooden sticks (Robotic Hand Sekelton)
-- Software/libraries: Hand tracking module, STM32 CUBE IDE, VS Code
+- Hardware: STM32 Nucelo Board, 1 servo motor, 1 stepper motor and driver, Jumper Wires, Breadboard, wooden sticks (Robotic Hand Sekelton)
+- Software/libraries: Hand tracking module, STM32 CUBE IDE, STM32 CUBE MX, VS Code
 
 ## Challenges & what I learned
 -[challenges here]
